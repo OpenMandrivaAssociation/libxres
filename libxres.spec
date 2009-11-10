@@ -1,8 +1,8 @@
 %define libxres %mklibname xres 1
 Name: libxres
 Summary:  X Resource Information Extension Library
-Version: 1.0.3
-Release: %mkrel 4
+Version: 1.0.4
+Release: %mkrel 1
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
