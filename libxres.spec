@@ -5,7 +5,7 @@
 Name: libxres
 Summary:  X Resource Information Extension Library
 Version: 1.0.5
-Release: %mkrel 1
+Release: %mkrel 2
 Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
