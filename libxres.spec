@@ -1,4 +1,7 @@
-%define libxres %mklibname xres 1
+%define libname %mklibname xres 1
+%define develname %mklibname xres -d
+%define staticname %mklibname xres -s -d
+
 Name: libxres
 Summary:  X Resource Information Extension Library
 Version: 1.0.5
@@ -19,36 +22,38 @@ X Resource Information Extension Library
 
 #-----------------------------------------------------------
 
-%package -n %{libxres}
+%package -n %{libname}
 Summary:  X Resource Information Extension Library
 Group: Development/X11
 Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
-%description -n %{libxres}
+%description -n %{libname}
 X Resource Information Extension Library
 
 #-----------------------------------------------------------
 
-%package -n %{libxres}-devel
+%package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
 
-Requires: %{libxres} = %{version}
+Requires: %{libname} = %{version}-%{release}
 Requires: x11-proto-devel >= 1.0.0
 Provides: libxres-devel = %{version}-%{release}
+Provides: libxres1-devel = %{version}-%{release}
+Obsoletes: %{mklibname xres 1 -d}
 
 Conflicts: libxorg-x11-devel < 7.0
 
-%description -n %{libxres}-devel
+%description -n %{develname}
 Development files for %{name}
 
-%pre -n %{libxres}-devel
+%pre -n %{develname}
 if [ -h %{_includedir}/X11 ]; then
 	rm -f %{_includedir}/X11
 fi
 
-%files -n %{libxres}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libXRes.so
 %{_libdir}/libXRes.la
@@ -58,18 +63,20 @@ fi
 
 #-----------------------------------------------------------
 
-%package -n %{libxres}-static-devel
+%package -n %{staticname}
 Summary: Static development files for %{name}
 Group: Development/X11
-Requires: %{libxres}-devel = %{version}
+Requires: %{develname} = %{version}-%{release}
 Provides: libxres-static-devel = %{version}-%{release}
+Provides: libxres1-static-devel = %{version}-%{release}
+Obsoletes: %{mklibname xres 1 -s -d}
 
 Conflicts: libxorg-x11-static-devel < 7.0
 
-%description -n %{libxres}-static-devel
+%description -n %{staticname}
 Static development files for %{name}
 
-%files -n %{libxres}-static-devel
+%files -n %{staticname}
 %defattr(-,root,root)
 %{_libdir}/libXRes.a
 
@@ -98,9 +105,7 @@ rm -rf %{buildroot}
 %postun -p /sbin/ldconfig
 %endif
 
-%files -n %{libxres}
+%files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libXRes.so.1
 %{_libdir}/libXRes.so.1.0.0
-
-
