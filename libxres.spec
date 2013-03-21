@@ -10,6 +10,7 @@ Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
 Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXres-%{version}.tar.bz2
+Patch0:		libxres-aarch64.patch
 
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
@@ -42,6 +43,7 @@ Development files for %{name}
 
 %prep
 %setup -qn libXres-%{version}
+%apply_patches
 
 %build
 %configure2_5x \
