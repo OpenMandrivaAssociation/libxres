@@ -1,20 +1,20 @@
 %define major 1
 %define libname %mklibname xres %{major}
-%define develname %mklibname xres -d
+%define devname %mklibname xres -d
 
-Name:		libxres
 Summary:	X Resource Information Extension Library
+Name:		libxres
 Version:	1.0.7
-Release:	1
+Release:	2
 Group:		Development/X11
 License:	MIT
-URL:		http://xorg.freedesktop.org
+Url:		http://xorg.freedesktop.org
 Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXres-%{version}.tar.bz2
 
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
-BuildRequires:	x11-proto-devel >= 1.0.0
-BuildRequires:	x11-util-macros >= 1.0.1
+BuildRequires:	pkgconfig(xorg-macros)
+BuildRequires:	pkgconfig(xproto)
 
 %description
 X Resource Information Extension Library.
@@ -22,22 +22,18 @@ X Resource Information Extension Library.
 %package -n %{libname}
 Summary:	X Resource Information Extension Library
 Group:		Development/X11
-Conflicts:	libxorg-x11 < 7.0
-Provides:	%{name} = %{version}
+Provides:	%{name} = %{version}-%{release}
 
 %description -n %{libname}
 X Resource Information Extension Library.
 
-%package -n %{develname}
+%package -n %{devname}
 Summary:	Development files for %{name}
 Group:		Development/X11
 Requires:	%{libname} = %{version}-%{release}
 Provides:	libxres-devel = %{version}-%{release}
-Obsoletes:	%{_lib}xres1-devel < 1.0.6
-Obsoletes:	%{_lib}xres-static-devel < 1.0.6
-Conflicts:	libxorg-x11-devel < 7.0
 
-%description -n %{develname}
+%description -n %{devname}
 Development files for %{name}.
 
 %prep
@@ -58,8 +54,9 @@ Development files for %{name}.
 %files -n %{libname}
 %{_libdir}/libXRes.so.%{major}*
 
-%files -n %{develname}
+%files -n %{devname}
 %{_libdir}/libXRes.so
 %{_libdir}/pkgconfig/xres.pc
 %{_includedir}/X11/extensions/XRes.h
 %{_mandir}/man3/XRes*
+
