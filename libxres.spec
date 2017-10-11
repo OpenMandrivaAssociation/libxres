@@ -4,8 +4,8 @@
 
 Summary:	X Resource Information Extension Library
 Name:		libxres
-Version:	1.0.7
-Release:	10
+Version:	1.2.0
+Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
@@ -41,7 +41,7 @@ Development files for %{name}.
 %apply_patches
 
 %build
-%configure2_5x \
+%configure \
 	--disable-static \
 	--x-includes=%{_includedir} \
 	--x-libraries=%{_libdir}
@@ -59,4 +59,3 @@ Development files for %{name}.
 %{_libdir}/pkgconfig/xres.pc
 %{_includedir}/X11/extensions/XRes.h
 %{_mandir}/man3/XRes*
-
