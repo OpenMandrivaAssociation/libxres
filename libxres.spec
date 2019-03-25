@@ -37,8 +37,7 @@ Provides:	libxres-devel = %{version}-%{release}
 Development files for %{name}.
 
 %prep
-%setup -qn libXres-%{version}
-%apply_patches
+%autosetup -n libXres-%{version} -p1
 
 %build
 %configure \
@@ -46,10 +45,10 @@ Development files for %{name}.
 	--x-includes=%{_includedir} \
 	--x-libraries=%{_libdir}
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files -n %{libname}
 %{_libdir}/libXRes.so.%{major}*
