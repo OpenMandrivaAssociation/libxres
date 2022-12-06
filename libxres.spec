@@ -4,12 +4,12 @@
 
 Summary:	X Resource Information Extension Library
 Name:		libxres
-Version:	1.2.1
+Version:	1.2.2
 Release:	1
 Group:		Development/X11
 License:	MIT
 Url:		http://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXres-%{version}.tar.bz2
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXres-%{version}.tar.xz
 
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
@@ -57,4 +57,4 @@ Development files for %{name}.
 %{_libdir}/libXRes.so
 %{_libdir}/pkgconfig/xres.pc
 %{_includedir}/X11/extensions/XRes.h
-%{_mandir}/man3/XRes*
+%doc %{_mandir}/man3/XRes*
